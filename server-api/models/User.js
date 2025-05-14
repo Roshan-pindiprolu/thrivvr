@@ -1,31 +1,12 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  fullName: String,
-  username: { type: String, unique: true },
-  email: { type: String, unique: true },
-  password: String,
-  preferredCategories: [String],
-  theme: { type: String, default: 'light' },
-  defaultSort: {
-    type: String,
-    enum: ['dueDate', 'category', 'createdAt'],
-    default: 'dueDate',
-  },
-});
-// const userSchema = new mongoose.Schema({
-//   fullName: String,
-//   username: { type: String, unique: true },
-//   email: { type: String, unique: true },
-//   password: String,
-//   preferredCategories: [String],
-//   theme: { type: String, default: 'light' },
-//   reminderTime: String,
-//   defaultSort: {
-//     type: String,
-//     enum: ['dueDate', 'category', 'createdAt'],
-//     default: 'dueDate',
-//   },
-// });
+  fullName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  phone: { type: String },
+  role: { type: String, enum: ['learner', 'creator', 'admin'] },
+  password: { type: String, required: true },
+  acceptTerms: { type: Boolean, required: true },
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
