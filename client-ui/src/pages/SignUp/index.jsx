@@ -58,11 +58,6 @@ const SignUp = () => {
         <>
             <div className="flex">
                 <div className="">
-                    <img
-                        alt="Your Company"
-                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                        className="flex h-10 w-auto"
-                    />
                     <h2 className="mt-10 text-2xl/9 tracking-tight text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
                         Create your account here
                     </h2>
