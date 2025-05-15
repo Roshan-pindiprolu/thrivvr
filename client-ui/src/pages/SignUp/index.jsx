@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { auth, provider, signInWithPopup } from '../firebase'; // adjust path if needed
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
@@ -50,6 +51,26 @@ const SignUp = () => {
           alert(res.data.message);
         } catch (err) {
           alert(err?.response?.data?.error || 'Something went wrong');
+        }
+    };
+
+    const handleGoogleLogin = async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+      
+          const userInfo = {
+            fullName: user.displayName,
+            email: user.email,
+            googleId: user.uid
+          };
+      
+          // Now you can call your backend to save or log in this user
+          await axios.post('http://localhost:5000/api/auth/social-login', userInfo);
+          alert('Logged in with Google!');
+        } catch (error) {
+          console.error('Google login error:', error);
+          alert('Login failed');
         }
     };
 
@@ -255,7 +276,7 @@ const SignUp = () => {
                         </a>
                     </p>
                     <Box sx={{ '& > :not(style)': { m: 1, mt: 5 } }}>
-                        <Fab aria-label="add" size="medium" sx={{ bgcolor: 'oklch(39.1% 0.09 240.876)', color: "oklch(92.3% 0.003 48.717)", '&:hover': { color: 'oklch(39.1% 0.09 240.876)', backgroundColor: 'oklch(92.3% 0.003 48.717)' }}}>
+                        <Fab aria-label="add" size="medium" sx={{ bgcolor: 'oklch(39.1% 0.09 240.876)', color: "oklch(92.3% 0.003 48.717)", '&:hover': { color: 'oklch(39.1% 0.09 240.876)', backgroundColor: 'oklch(92.3% 0.003 48.717)' }}} onClick={handleGoogleLogin}>
                             <GoogleIcon />
                         </Fab>
                         <Fab aria-label="edit" size="medium" sx={{ bgcolor: 'oklch(39.1% 0.09 240.876)', color: "oklch(92.3% 0.003 48.717)", '&:hover': { color: 'oklch(39.1% 0.09 240.876)', backgroundColor: 'oklch(92.3% 0.003 48.717)' }}}>

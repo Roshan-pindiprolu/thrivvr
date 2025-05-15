@@ -46,4 +46,22 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+router.post('/social-login', async (req, res) => {
+  const { email, fullName, googleId } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({ fullName, email, googleId, role: 'learner' });
+      await user.save();
+    }
+
+    res.status(200).json({ message: 'User logged in via Google', user });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
 module.exports = router;
