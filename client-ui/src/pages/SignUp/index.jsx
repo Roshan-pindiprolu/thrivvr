@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
@@ -32,6 +33,27 @@ const SignUp = () => {
         }
     ]
     const [selected, setSelected] = useState(roles[0])
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        role: roles[0].name,
+        acceptTerms: false
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        try {
+          const res = await axios.post('http://localhost:1000/api/auth/signup', formData);
+          alert(res.data.message);
+        } catch (err) {
+          alert(err?.response?.data?.error || 'Something went wrong');
+        }
+    };
+
+      
     return (
         <>
             <div className="flex">
@@ -48,18 +70,20 @@ const SignUp = () => {
             </div>
             <div className="flex">
                 <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-40 sm:max-w-sm pr-10">
-                    <form action="#" method="POST" className="space-y-6">
+                    <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
                                 Full name
                             </label>
                             <div className="mt-2 basis-1/3">
                                 <input
-                                id="first-name"
-                                name="first-name"
+                                id="fullName"
+                                name="fullName"
                                 type="text"
                                 autoComplete="given-name"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts "
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
+                                value={formData.fullName}
+                                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                                 />
                             </div>
                         </div>
@@ -77,6 +101,8 @@ const SignUp = () => {
                             required
                             autoComplete="email"
                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}                          
                             />
                         </div>
                         </div>
@@ -95,6 +121,8 @@ const SignUp = () => {
                                 required
                                 autoComplete="current-password"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6"
+                                value={formData.password}
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 />
                             </div>
                         </div>
@@ -113,6 +141,8 @@ const SignUp = () => {
                                 required
                                 autoComplete="current-password"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6"
+                                value={formData.confirmPassword}
+                                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                                 />
                             </div>
                         </div>
@@ -169,6 +199,8 @@ const SignUp = () => {
                                         type="checkbox"
                                         aria-describedby="candidates-description"
                                         className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-sky-900 checked:bg-sky-900 indeterminate:border-sky-900 indeterminate:bg-sky-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-900 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                                        checked={formData.acceptTerms}
+                                        onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
                                     />
                                     <svg
                                         fill="none"
