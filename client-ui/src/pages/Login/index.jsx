@@ -46,8 +46,8 @@ const Login = () => {
       
     return (
         <>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="my-5 text-2xl/9 text-center tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-40">
+                <h2 className="my-5 text-2xl/9 text-left tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200 font-bold">
                     LOGIN
                 </h2>
             </div>
@@ -100,7 +100,7 @@ const Login = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-sky-900 px-3 py-1.5 text-sm/6 font-semibold text-stone-200 shadow-xs hover:bg-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-900 selection:bg-cyan-800 selection:text-stone-200 mt-8"
+                                className="flex w-20 justify-center rounded-md bg-sky-900 px-3 py-1.5 text-sm/6 font-semibold text-stone-200 shadow-xs hover:bg-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-900 selection:bg-cyan-800 selection:text-stone-200 mt-8"
                             >
                                 Log in
                             </button>
