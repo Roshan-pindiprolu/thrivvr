@@ -1,18 +1,17 @@
 import axios from 'axios';
-import { signInWithPopup, auth, googleProvider } from '../../firebase';
-import { githubProvider } from '../../firebase';
-import { linkWithCredential, fetchSignInMethodsForEmail, GithubAuthProvider } from 'firebase/auth';
-
+// import { signInWithPopup, auth, googleProvider } from '../../firebase';
+// import { githubProvider } from '../../firebase';
+// import { linkWithCredential, fetchSignInMethodsForEmail, GithubAuthProvider } from 'firebase/auth';
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
+// import Box from '@mui/material/Box';
+// import Fab from '@mui/material/Fab';
+// import GitHubIcon from '@mui/icons-material/GitHub';
+// import GoogleIcon from '@mui/icons-material/Google';
+// import FacebookIcon from '@mui/icons-material/Facebook';
 
 const SignUp = () => {
     
@@ -57,85 +56,83 @@ const SignUp = () => {
         }
     };
 
-    const handleGoogleLogin = async () => {
-        try {
-          const result = await signInWithPopup(auth, googleProvider);
-          const user = result.user;
+    // const handleGoogleLogin = async () => {
+    //     try {
+    //       const result = await signInWithPopup(auth, googleProvider);
+    //       const user = result.user;
       
-          const payload = {
-            fullName: user.displayName,
-            email: user.email,
-            googleId: user.uid,
-            role: "Learner" // optional default
-          };
+    //       const payload = {
+    //         fullName: user.displayName,
+    //         email: user.email,
+    //         googleId: user.uid,
+    //         role: "Learner" // optional default
+    //       };
       
-          const res = await axios.post('http://localhost:1000/api/auth/social-gmail-login', payload);
+    //       const res = await axios.post('http://localhost:1000/api/auth/social-gmail-login', payload);
       
-          alert(res.data.message || "Logged in via Google!");
-        } catch (err) {
-          console.error("Google login error:", err);
-          alert(err?.response?.data?.error || "Login failed.");
-        }
-    };
+    //       alert(res.data.message || "Logged in via Google!");
+    //     } catch (err) {
+    //       console.error("Google login error:", err);
+    //       alert(err?.response?.data?.error || "Login failed.");
+    //     }
+    // };
 
-    const handleGithubLogin = async () => {
-        try {
-          const result = await signInWithPopup(auth, githubProvider);
-          const user = result.user;
+    // const handleGithubLogin = async () => {
+    //     try {
+    //       const result = await signInWithPopup(auth, githubProvider);
+    //       const user = result.user;
       
-          const payload = {
-            fullName: user.displayName || user.email.split('@')[0],
-            email: user.email,
-            githubId: user.uid,
-            role: "Learner"
-          };
+    //       const payload = {
+    //         fullName: user.displayName || user.email.split('@')[0],
+    //         email: user.email,
+    //         githubId: user.uid,
+    //         role: "Learner"
+    //       };
       
-          await axios.post('http://localhost:1000/api/auth/social-github-login', payload);
+    //       await axios.post('http://localhost:1000/api/auth/social-github-login', payload);
       
-          alert("Logged in via GitHub!");
-        } catch (error) {
-          if (error.code === 'auth/account-exists-with-different-credential') {
-            const email = error.customData.email;
-            const pendingCred = GithubAuthProvider.credentialFromError(error);
+    //       alert("Logged in via GitHub!");
+    //     } catch (error) {
+    //       if (error.code === 'auth/account-exists-with-different-credential') {
+    //         const email = error.customData.email;
+    //         const pendingCred = GithubAuthProvider.credentialFromError(error);
       
-            // Step 1: Find which provider is already linked
-            const methods = await fetchSignInMethodsForEmail(auth, email);
+    //         // Step 1: Find which provider is already linked
+    //         const methods = await fetchSignInMethodsForEmail(auth, email);
       
-            if (methods.includes('google.com')) {
-              alert(`This email is already linked with Google. Please login via Google first.`);
-              // Optional: trigger Google login here and then link accounts manually
-            } else {
-              alert(`Account exists with a different provider`);
-            }
+    //         if (methods.includes('google.com')) {
+    //           alert(`This email is already linked with Google. Please login via Google first.`);
+    //           // Optional: trigger Google login here and then link accounts manually
+    //         } else {
+    //           alert(`Account exists with a different provider`);
+    //         }
       
-            // Optional advanced: once Google login succeeds, link the pending GitHub:
-            // await linkWithCredential(user, pendingCred);
-          } else {
-            console.error("GitHub login error:", error);
-            alert("GitHub login failed.");
-          }
-        }
-      };
+    //         // Optional advanced: once Google login succeeds, link the pending GitHub:
+    //         // await linkWithCredential(user, pendingCred);
+    //       } else {
+    //         console.error("GitHub login error:", error);
+    //         alert("GitHub login failed.");
+    //       }
+    //     }
+    // };
       
 
       
     return (
         <>
-            <div className="flex">
-                <div className="">
-                    <h2 className="mt-10 text-2xl/9 tracking-tight text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
-                        Create your account here
-                    </h2>
-                </div>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 className="my-5 text-2xl/9 text-center tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
+                    Create your account here
+                </h2>
             </div>
             <div className="flex">
-                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-40 sm:max-w-sm pr-10">
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
                                 Full name
                             </label>
-                            <div className="mt-2 basis-1/3">
+                            <div className="mt-1 basis-1/3">
                                 <input
                                 id="fullName"
                                 name="fullName"
@@ -153,7 +150,7 @@ const SignUp = () => {
                         <label htmlFor="email" className="block text-left text-sm/6 font-medium text-sky-900 font-monts selection:bg-cyan-800 selection:text-stone-200">
                             Email address
                         </label>
-                        <div className="mt-2">
+                        <div className="mt-1">
                             <input
                             id="email"
                             name="email"
@@ -173,7 +170,7 @@ const SignUp = () => {
                                 Password
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-1">
                                 <input
                                 id="password"
                                 name="password"
@@ -315,7 +312,7 @@ const SignUp = () => {
                         </a>
                     </p>
                 </div>
-                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-25 ml-40 sm:max-w-20">
+                {/* <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-25 ml-40 sm:max-w-20">
                     <div className=""></div>
                 </div>
                 <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-45 sm:max-w-sm border-l-1 pl-40">
@@ -333,7 +330,7 @@ const SignUp = () => {
                             <GitHubIcon onClick={handleGithubLogin}/>
                         </Fab>
                     </Box>
-                </div>
+                </div> */}
             </div>
         </>
     )
