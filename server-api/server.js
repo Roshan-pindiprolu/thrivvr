@@ -7,13 +7,13 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
-// ✅ Allow only Vite frontend to talk to backend
+// ✅ CORS FIX - this must come before all routes and body parsing
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
 }));
 
-app.use(express.json());
+app.use(express.json()); // Keep this AFTER CORS
 app.use('/api/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI)

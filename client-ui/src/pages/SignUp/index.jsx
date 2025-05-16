@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { auth, provider, signInWithPopup } from '../firebase'; // adjust path if needed
+import { signInWithPopup, auth, googleProvider } from '../../firebase';
+import { githubProvider } from '../../firebase';
+import { linkWithCredential, fetchSignInMethodsForEmail, GithubAuthProvider } from 'firebase/auth';
+
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
@@ -56,23 +59,64 @@ const SignUp = () => {
 
     const handleGoogleLogin = async () => {
         try {
-          const result = await signInWithPopup(auth, provider);
+          const result = await signInWithPopup(auth, googleProvider);
           const user = result.user;
       
-          const userInfo = {
+          const payload = {
             fullName: user.displayName,
             email: user.email,
-            googleId: user.uid
+            googleId: user.uid,
+            role: "Learner" // optional default
           };
       
-          // Now you can call your backend to save or log in this user
-          await axios.post('http://localhost:5000/api/auth/social-login', userInfo);
-          alert('Logged in with Google!');
-        } catch (error) {
-          console.error('Google login error:', error);
-          alert('Login failed');
+          const res = await axios.post('http://localhost:1000/api/auth/social-gmail-login', payload);
+      
+          alert(res.data.message || "Logged in via Google!");
+        } catch (err) {
+          console.error("Google login error:", err);
+          alert(err?.response?.data?.error || "Login failed.");
         }
     };
+
+    const handleGithubLogin = async () => {
+        try {
+          const result = await signInWithPopup(auth, githubProvider);
+          const user = result.user;
+      
+          const payload = {
+            fullName: user.displayName || user.email.split('@')[0],
+            email: user.email,
+            githubId: user.uid,
+            role: "Learner"
+          };
+      
+          await axios.post('http://localhost:1000/api/auth/social-github-login', payload);
+      
+          alert("Logged in via GitHub!");
+        } catch (error) {
+          if (error.code === 'auth/account-exists-with-different-credential') {
+            const email = error.customData.email;
+            const pendingCred = GithubAuthProvider.credentialFromError(error);
+      
+            // Step 1: Find which provider is already linked
+            const methods = await fetchSignInMethodsForEmail(auth, email);
+      
+            if (methods.includes('google.com')) {
+              alert(`This email is already linked with Google. Please login via Google first.`);
+              // Optional: trigger Google login here and then link accounts manually
+            } else {
+              alert(`Account exists with a different provider`);
+            }
+      
+            // Optional advanced: once Google login succeeds, link the pending GitHub:
+            // await linkWithCredential(user, pendingCred);
+          } else {
+            console.error("GitHub login error:", error);
+            alert("GitHub login failed.");
+          }
+        }
+      };
+      
 
       
     return (
@@ -283,7 +327,7 @@ const SignUp = () => {
                             <FacebookIcon />
                         </Fab>
                         <Fab aria-label="edit" size="medium" sx={{ bgcolor: "oklch(39.1% 0.09 240.876)", color: "oklch(92.3% 0.003 48.717)", '&:hover': { color: 'oklch(39.1% 0.09 240.876)', backgroundColor: 'oklch(92.3% 0.003 48.717)' }}}>
-                            <GitHubIcon />
+                            <GitHubIcon onClick={handleGithubLogin}/>
                         </Fab>
                     </Box>
                 </div>

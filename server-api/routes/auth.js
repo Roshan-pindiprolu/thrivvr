@@ -63,5 +63,58 @@ router.post('/social-login', async (req, res) => {
   }
 });
 
+router.post('/social-gmail-login', async (req, res) => {
+
+  const { fullName, email, googleId, role } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({
+        fullName,
+        email,
+        googleId,
+        role: role || "Learner",
+        password: googleId,
+        acceptTerms: true
+      });
+
+      await user.save();
+    }
+
+    res.status(200).json({ message: 'Social login successful ✅', user });
+  } catch (err) {
+    console.error('❌ Backend Crash:', err); // <- See what the real error is
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.post('/social-github-login', async (req, res) => {
+
+  const { fullName, email, githubId, role } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({
+        fullName,
+        email,
+        githubId,
+        role: role || "learner", // match your schema enum
+        password: githubId,      // or leave empty if you want
+        acceptTerms: true
+      });
+
+      await user.save();
+    }
+
+    res.status(200).json({ message: 'GitHub login successful ✅', user });
+  } catch (err) {
+    console.error('❌ GitHub login error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router;
