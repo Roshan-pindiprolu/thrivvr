@@ -308,18 +308,21 @@ const SignUp = () => {
                         </fieldset>
                         </div>
                     </form>
-                </div>
-                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-25 ml-40 sm:max-w-20">
-                    <div className=""></div>
-                </div>
-                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-45 sm:max-w-sm border-l-1 pl-40">
-                    <p className="mt-30 text-center text-cyan-800 font-sans selection:bg-cyan-800 selection:text-stone-200">
+                    <p className="mt-5 text-left text-cyan-800 font-sans selection:bg-cyan-800 selection:text-stone-200">
                         Already a member?{' '}
                         <a href="#" className="font-semibold text-sky-900 hover:text-sky-700 ml-1 font-sans selection:bg-cyan-800 selection:text-stone-200">
                         Login
                         </a>
                     </p>
-                    <Box sx={{ '& > :not(style)': { m: 1, mt: 5 } }}>
+                </div>
+                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-25 ml-40 sm:max-w-20">
+                    <div className=""></div>
+                </div>
+                <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-45 sm:max-w-sm border-l-1 pl-40">
+                    <p className="mt-30 text-center text-cyan-800 font-sans selection:bg-cyan-800 selection:text-stone-200 pb-4 tracking-wider">
+                       You also SIGNUP using
+                    </p>
+                    <Box sx={{ '& > :not(style)': { m: 1, mt: 3 } }}>
                         <Fab aria-label="add" size="medium" sx={{ bgcolor: 'oklch(39.1% 0.09 240.876)', color: "oklch(92.3% 0.003 48.717)", '&:hover': { color: 'oklch(39.1% 0.09 240.876)', backgroundColor: 'oklch(92.3% 0.003 48.717)' }}} onClick={handleGoogleLogin}>
                             <GoogleIcon />
                         </Fab>
