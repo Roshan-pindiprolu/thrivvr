@@ -121,13 +121,13 @@ const SignUp = () => {
       
     return (
         <>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="my-5 text-2xl/9 text-center tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
-                    Create your account here
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-20">
+                <h2 className="my-5 text-2xl/9 text-left font-bold tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
+                    Become our Memeber
                 </h2>
             </div>
             <div className="flex">
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm mb-10">
                     <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
@@ -278,7 +278,7 @@ const SignUp = () => {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         className="opacity-0 group-has-indeterminate:opacity-100"
-                                        />l
+                                        />
                                     </svg>
                                     </div>
                                 </div>
