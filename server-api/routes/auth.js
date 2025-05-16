@@ -117,4 +117,26 @@ router.post('/social-github-login', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  const { fullName, password } = req.body;
+
+  try {
+    const user = await User.findOne({ fullName });
+
+    if (!user) {
+      return res.status(400).json({ error: 'User not found 😢' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Invalid password ❌' });
+    }
+
+    res.status(200).json({ message: 'Login successful ✅', user });
+  } catch (err) {
+    console.error('❌ Login error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 module.exports = router;

@@ -7,6 +7,7 @@ import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
 import Avatar from '@mui/material/Avatar';
+import { Link } from 'react-router-dom';
 // import Box from '@mui/material/Box';
 // import Fab from '@mui/material/Fab';
 // import GitHubIcon from '@mui/icons-material/GitHub';
@@ -294,22 +295,25 @@ const SignUp = () => {
                             </div>
                         </div>
 
-                            <div>
+                        <div>
                             <button
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-sky-900 px-3 py-1.5 text-sm/6 font-semibold text-stone-200 shadow-xs hover:bg-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-900 selection:bg-cyan-800 selection:text-stone-200 mt-8"
                             >
                                 Sign in
                             </button>
-                            </div>
+                        </div>
                         </fieldset>
                         </div>
                     </form>
                     <p className="mt-5 text-left text-cyan-800 font-sans selection:bg-cyan-800 selection:text-stone-200">
                         Already a member?{' '}
-                        <a href="#" className="font-semibold text-sky-900 hover:text-sky-700 ml-1 font-sans selection:bg-cyan-800 selection:text-stone-200">
-                        Login
-                        </a>
+                        <Link
+                            to="/login"
+                            className="font-semibold text-sky-900 hover:text-sky-700 ml-1 font-sans selection:bg-cyan-800 selection:text-stone-200"
+                        >
+                            Login
+                        </Link>
                     </p>
                 </div>
                 {/* <div className="flex min-h-full flex-1 flex-col mt-10 sm:w-25 ml-40 sm:max-w-20">
