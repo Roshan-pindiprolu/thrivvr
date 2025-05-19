@@ -52,7 +52,7 @@ const Login = () => {
                 </h2>
             </div>
             <div className="flex">
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
