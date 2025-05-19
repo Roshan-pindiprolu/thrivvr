@@ -41,14 +41,12 @@ const Login = () => {
             alert(message || 'Something went wrong');
           }
     };
-
-    console.log(errors);
       
     return (
         <>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-40">
                 <h2 className="my-5 text-2xl/9 text-left tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200 font-bold">
-                    LOGIN
+                    Login
                 </h2>
             </div>
             <div className="flex">
