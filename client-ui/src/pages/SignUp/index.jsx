@@ -36,7 +36,8 @@ const SignUp = () => {
             'AD',
         }
     ]
-    const [selected, setSelected] = useState(roles[0])
+    const [selected, setSelected] = useState(roles[0]);
+    const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -46,14 +47,25 @@ const SignUp = () => {
         acceptTerms: false
     });
 
+    const handleNext = () => {
+        if (formData.fullName && formData.email) {
+            setStep(2);
+        } else {
+            alert("Please fill in name and email to proceed.");
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-      
         try {
-          const res = await axios.post('http://localhost:1000/api/auth/signup', formData);
-          alert(res.data.message);
+            const payload = {
+            ...formData,
+            role: selected.name
+            };
+            await axios.post('http://localhost:1000/api/auth/signup', payload);
+            alert("Registration completed");
         } catch (err) {
-          alert(err?.response?.data?.error || 'Something went wrong');
+            alert(err?.response?.data?.error || 'Something went wrong');
         }
     };
 
@@ -128,24 +140,24 @@ const SignUp = () => {
             </div>
             <div className="flex">
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm mb-10">
-                    <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
+                {step === 1 && (
+                    <div className="space-y-6">
                         <div>
-                            <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
-                                Full name
-                            </label>
-                            <div className="mt-1 basis-1/3">
-                                <input
-                                id="fullName"
-                                name="fullName"
-                                type="text"
-                                autoComplete="given-name"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
-                                value={formData.fullName}
-                                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                />
-                            </div>
+                        <label htmlFor="first-name" className="block text-sm/6 text-sky-900 text-left font-monts selection:bg-cyan-800 selection:text-stone-200">
+                            Full name
+                        </label>
+                        <div className="mt-1 basis-1/3">
+                            <input
+                            id="fullName"
+                            name="fullName"
+                            type="text"
+                            autoComplete="given-name"
+                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
+                            value={formData.fullName}
+                            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                            />
                         </div>
-
+                        </div>
 
                         <div>
                         <label htmlFor="email" className="block text-left text-sm/6 font-medium text-sky-900 font-monts selection:bg-cyan-800 selection:text-stone-200">
@@ -160,11 +172,29 @@ const SignUp = () => {
                             autoComplete="email"
                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
                             value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}                          
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
                         </div>
                         </div>
 
+                        <button
+                        type="button"
+                        onClick={handleNext}
+                        className="flex w-full justify-center rounded-md bg-sky-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-sky-700 mt-8"
+                        >
+                        Next
+                        </button>
+                    </div>
+                    )}
+
+                    {step == 2 && (
+                    <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
+                        <p
+                        onClick={() => setStep(1)}
+                        className="text-sm mb-5 text-sky-900 font-semibold cursor-pointer hover:text-sky-700 transition duration-150 ease-in-out  selection:bg-cyan-800 selection:text-stone-200"
+                        >
+                            ← Back to Name & Email
+                        </p>
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm/6 font-medium text-sky-900 font-monts selection:bg-cyan-800 selection:text-stone-200">
@@ -306,6 +336,7 @@ const SignUp = () => {
                         </fieldset>
                         </div>
                     </form>
+                    )}
                     <p className="mt-5 text-left text-cyan-800 font-sans selection:bg-cyan-800 selection:text-stone-200">
                         Already a member?{' '}
                         <Link
