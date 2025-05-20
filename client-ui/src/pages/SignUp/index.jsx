@@ -134,11 +134,11 @@ const SignUp = () => {
     return (
         <>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-40">
-                <h2 className="my-5 text-2xl/9 text-left font-bold tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200">
+                <h2 className="my-5 text-2xl/9 text-left font-bold tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200 max-sm:text-center">
                     Become our Memeber
                 </h2>
             </div>
-            <div className="flex">
+            <div className="flex max-sm:ml-15">
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm mb-10">
                 {step === 1 && (
                     <div className="space-y-6">
@@ -152,7 +152,7 @@ const SignUp = () => {
                             name="fullName"
                             type="text"
                             autoComplete="given-name"
-                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts"
+                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 font-monts max-sm:w-65"
                             value={formData.fullName}
                             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                             />
@@ -208,7 +208,7 @@ const SignUp = () => {
                                 type="password"
                                 required
                                 autoComplete="current-password"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-cyan-800 focus:text-sky-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-sky-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-900 sm:text-sm/6 max-sm:w-65"
                                 value={formData.password}
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 />

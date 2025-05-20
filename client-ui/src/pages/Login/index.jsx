@@ -44,12 +44,12 @@ const Login = () => {
       
     return (
         <>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-40">
-                <h2 className="my-5 text-2xl/9 text-left tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200 font-bold">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-30">
+                <h2 className="my-5 text-2xl/9 text-left tracking-normal text-sky-900 font-sans selection:bg-cyan-800 selection:text-stone-200 font-bold max-sm:text-center">
                     Login
                 </h2>
             </div>
-            <div className="flex">
+            <div className="flex max-sm:ml-15">
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
                         <div>
