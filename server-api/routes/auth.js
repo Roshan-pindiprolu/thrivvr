@@ -139,4 +139,46 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Check for Google login
+router.post('/check-google-user', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  try {
+    const user = await User.findOne({ email, googleId: { $exists: true } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Google user not found' });
+    }
+
+    res.json({ message: 'Google user exists' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error while checking Google user' });
+  }
+});
+
+// Check for GitHub login
+router.post('/check-github-user', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  try {
+    const user = await User.findOne({ email, githubId: { $exists: true } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'GitHub user not found' });
+    }
+
+    res.json({ message: 'GitHub user exists' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error while checking GitHub user' });
+  }
+});
+
 module.exports = router;
