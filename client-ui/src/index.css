@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-    --font-monts: Montserrat, sans-serif; 
+    --font-monts: Montserrat, sans-serif;
+    --font-lato: Lato, sans-serif;
+    --font-rale: Raleway, sans-serif;
 }
