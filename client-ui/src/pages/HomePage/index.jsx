@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Navigation from '../../components/Navigation'
 import Typewriter from 'typewriter-effect';
-import { WrenchScrewdriverIcon, AcademicCapIcon, PaperAirplaneIcon, FireIcon } from '@heroicons/react/24/outline'
+import { WrenchScrewdriverIcon, AcademicCapIcon, PaperAirplaneIcon, FireIcon, BookmarkSquareIcon } from '@heroicons/react/24/outline'
 import axios from 'axios';
 
 const HeroSection = () => {
@@ -192,6 +192,94 @@ const WhoSection = (props) => {
       
 }
 
+const ProductSection = () => {
+    const features = [
+      {
+        name: 'Codebase (Coming Soon)',
+        description:
+          'An all-in-one platform for beginner coders to learn, build, and test code — with real-world project challenges.',
+        icon: WrenchScrewdriverIcon,
+      },
+      {
+        name: 'Courses (Coming Soon)',
+        description:
+          'Free, beginner-friendly courses in full-stack development, product thinking, and digital creation.',
+        icon: AcademicCapIcon,
+      },
+      {
+        name: 'eBooks & Digital Kits (Coming Soon)',
+        description:
+          'No-fluff guides, productivity tools, and creator toolkits built from experience, not theory.',
+        icon: BookmarkSquareIcon,
+      },
+    ]
+    
+    return (
+        <div className="bg-white py-5 sm:py-12">
+          <div className="mx-20 max-w-7xl px-6 lg:px-8">
+            <div className="mx-20 max-w-2xl lg:text-left">
+              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-balance font-monts">
+                What I’m Working On
+              </p>
+              <p className="mt-6 text-lg/8 text-gray-600 font-lato">
+                These are the projects I’m building (or about to). Real tools. Real impact. Thrivvr is just the beginning.
+              </p>
+            </div>
+            <div className="mx-20 mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+              <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                {features.map((feature) => (
+                  <div key={feature.name} className="relative pl-16">
+                    <dt className="text-base/7 font-semibold text-gray-900 font-lato">
+                      <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-blue-800">
+                        <feature.icon aria-hidden="true" className="size-6 text-white" />
+                      </div>
+                      {feature.name}
+                    </dt>
+                    <dd className="mt-2 text-base/7 text-gray-600 font-rale">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+    )
+    
+}
+
+const CtaSection = () => {
+    return (
+        <>
+            <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-100),white)] opacity-20" />
+                <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl ring-1 shadow-indigo-600/10 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
+                <div className="mx-auto max-w-2xl lg:max-w-4xl">
+                    <figure className="mt-10">
+                    <blockquote className="text-center text-xl/8 font-semibold text-gray-900 sm:text-2xl/9">
+                        <p>
+                            “Something big is coming.”
+                        </p>
+                    </blockquote>
+                    <figcaption className="mt-10">
+                        <img
+                        alt=""
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        className="mx-auto size-10 rounded-full"
+                        />
+                        <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                        <div className="font-semibold text-gray-900">Judith Black</div>
+                        <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
+                            <circle r={1} cx={1} cy={1} />
+                        </svg>
+                        <div className="text-gray-600">CEO of Workcation</div>
+                        </div>
+                    </figcaption>
+                    </figure>
+                </div>
+            </section>
+        </>
+    )
+}
+
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
 
@@ -214,6 +302,8 @@ const HomePage = () => {
         <HeroSection />
         <CoreSection />
         <WhoSection posts={posts}/>
+        <ProductSection />
+        <CtaSection />
     </div>
   )
 }
