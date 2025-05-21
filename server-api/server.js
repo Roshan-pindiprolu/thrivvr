@@ -6,6 +6,7 @@ require('dotenv').config();
 // Routes
 const authRoutes = require('./routes/auth');
 const navRoutes = require('./routes/nav');
+const metaRoutes = require('./routes/meta')
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(express.json());  // Keep this AFTER CORS
 app.use('/api/auth', authRoutes);
 app.use('/api/nav', navRoutes);
+app.use('/api/meta', metaRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB ✅'))

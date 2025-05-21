@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Beginners Who Want to Learn Code",
+      "description":"You’ve just started learning programming, and everything feels overwhelming? Thrivvr gives you simplified, structured, and supportive guidance to keep you going."
+    },
+    {
+        "id": 2,
+        "title": "Developers Who Want to Build Real Stuff",
+        "description": "Already know the basics? It’s time to ship projects that matter. We help you build, break, and level up through hands-on code, architecture, and side hustles."
+    },
+    {
+        "id": 3,
+        "title": "Creators Who Want to Teach and Share",
+        "description": "Got a story, a skill, or a startup idea? Learn how to build your brand, design great content, and ship your first course or digital product with impact."
+    }
+    ,
+    {
+        "id": 4,
+        "title": "Anyone Who’s Tired of Being Average",
+        "description": "If you feel stuck, lost, or just not good enough — Thrivvr is your reset button. This is for the rebels, the grinders, and the silent fighters."
+    }
+]

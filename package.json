@@ -2,13 +2,15 @@
     "name": "thrivvr",
     "version": "1.0.0",
     "scripts": {
-      "dev": "concurrently -n server-api,client-ui -c green,blue \"npm run server\" \"npm run client\"",
-      "server": "cd server-api && nodemon server.js",
-      "client": "cd client-ui && npm run dev"
+        "dev": "concurrently -n server-api,client-ui -c green,blue \"npm run server\" \"npm run client\"",
+        "server": "cd server-api && nodemon server.js",
+        "client": "cd client-ui && npm run dev"
     },
     "devDependencies": {
-      "concurrently": "^8.2.2",
-      "nodemon": "^3.0.1"
+        "concurrently": "^8.2.2",
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "typewriter-effect": "^2.22.0"
     }
-  }
-  
+}
