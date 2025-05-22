@@ -2,6 +2,6 @@
     { "name": "Home", "href": "/" },
     { "name": "Courses", "href": "/courses" },
     { "name": "Blog", "href": "/blog" },
-    { "name": "About", "href": "/about" }
+    { "name": "About Us", "href": "/about" }
 ]
   
