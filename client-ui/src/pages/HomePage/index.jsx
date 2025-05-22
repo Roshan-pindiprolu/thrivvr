@@ -4,6 +4,11 @@ import Navigation from '../../components/Navigation'
 import Typewriter from 'typewriter-effect';
 import { WrenchScrewdriverIcon, AcademicCapIcon, PaperAirplaneIcon, FireIcon, BookmarkSquareIcon } from '@heroicons/react/24/outline'
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const HeroSection = () => {
     const [done, setDone] = useState(false);
@@ -250,8 +255,6 @@ const CtaSection = () => {
     return (
         <>
             <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-100),white)] opacity-20" />
-                <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl ring-1 shadow-indigo-600/10 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
                 <div className="mx-auto max-w-2xl lg:max-w-4xl">
                     <figure className="mt-10">
                     <blockquote className="text-center text-xl/8 font-semibold text-gray-900 sm:text-2xl/9">
@@ -260,17 +263,19 @@ const CtaSection = () => {
                         </p>
                     </blockquote>
                     <figcaption className="mt-10">
-                        <img
-                        alt=""
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        className="mx-auto size-10 rounded-full"
-                        />
+                        <Box sx={{ml:37, mb: 4, '& > :not(style)': { m: 1, mx: 3 } }}>
+                          <Fab color="primary" aria-label="Instagram" sx={{ bgcolor: "#0C359E" }}>
+                            <InstagramIcon />
+                          </Fab>
+                          <Fab color="primary" aria-label="Gmail" sx={{ bgcolor: "#0C359E" }}>
+                            <FacebookIcon />
+                          </Fab>
+                          <Fab color="primary" aria-label="Gmail" sx={{ bgcolor: "#0C359E"}}>
+                            <LinkedInIcon />
+                          </Fab>
+                        </Box>
                         <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                        <div className="font-semibold text-gray-900">Judith Black</div>
-                        <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
-                            <circle r={1} cx={1} cy={1} />
-                        </svg>
-                        <div className="text-gray-600">CEO of Workcation</div>
+                          <div className="font-semibold text-gray-900">Stay tuned or connect with me on</div>
                         </div>
                     </figcaption>
                     </figure>
@@ -278,6 +283,81 @@ const CtaSection = () => {
             </section>
         </>
     )
+}
+
+const FooterSection = () => {
+  const [email, setEmail] = useState('');
+  const [msg, setMsg] = useState('');
+
+  const handleSubscribe = async () => {
+    try {
+      const res = await axios.post('http://localhost:1000/api/newsletter', { email });
+      setMsg(res.data.message);
+      setEmail('');
+    } catch (err) {
+      console.error(err.response?.data?.error || 'Subscription failed');
+    }
+  };
+  
+  return (
+    <div className="relative isolate overflow-hidden bg-slate-800 py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+          <div className="max-w-xl lg:max-w-lg">
+            <div className="flex items-center">
+              <img
+                  alt="Your Company"
+                  src="/ThrivvrNewLogo.png"
+                  className="h-20 w-auto"
+              />
+            </div>
+            <h2 className="text-4xl font-semibold tracking-tight text-white">Subscribe to our newsletter</h2>
+            <p className="mt-4 text-lg text-gray-300">
+              Built with heart. Made to help you thrive.
+            </p>
+            <div className="mt-6 flex max-w-md gap-x-4">
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                required
+                placeholder="Enter your email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+              />
+              <button
+                type="submit"
+                onClick={handleSubscribe}
+                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Subscribe
+              </button>
+            </div>
+            {msg && <p className="mt-2 text-sm text-gray-300">{msg}</p>}
+          </div>
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+            <div className="flex flex-col items-start">
+              <dt className="mt-4 text-base font-semibold text-white"><a href="/">Home</a></dt>
+              <dd className="mt-2 text-base/7 text-gray-400">
+                <a href="/">About Us</a>
+              </dd>
+            </div>
+            <div className="flex flex-col items-start">
+              <dt className="mt-4 text-base font-semibold text-white">© 2025 Thrivvr. All rights reserved.</dt>
+              <dd className="mt-2 text-base/7 text-gray-400">
+                <p className="mt-1"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 const HomePage = () => {
@@ -304,6 +384,7 @@ const HomePage = () => {
         <WhoSection posts={posts}/>
         <ProductSection />
         <CtaSection />
+        <FooterSection />
     </div>
   )
 }
