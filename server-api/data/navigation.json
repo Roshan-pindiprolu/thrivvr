@@ -1,7 +1,6 @@
 [
     { "name": "Home", "href": "/" },
-    { "name": "Courses", "href": "/courses" },
-    { "name": "Blog", "href": "/blog" },
+    { "name": "Projects", "href": "/projects"},
     { "name": "About Us", "href": "/about" }
 ]
   

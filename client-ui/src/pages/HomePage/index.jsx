@@ -167,17 +167,17 @@ const WhoSection = (props) => {
         <div className="bg-white my-20 py-40 sm:py-40 mx-20">
             <div className="mx-20 max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0">
-                    <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl mb-10">Who is Thrivvr for?</h2>
-                    <p className="mt-2 text-lg/8 text-gray-600">If you want to grow in tech, create boldly, and build your dream life — Thrivvr is your tribe.</p>
+                    <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl mb-10 font-monts">Who is Thrivvr for?</h2>
+                    <p className="mt-2 text-lg/8 text-gray-600 font-lato">If you want to grow in tech, create boldly, and build your dream life — Thrivvr is your tribe.</p>
                 </div>
                 <div className="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-0 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {posts.map((post) => (
                         <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
                         <div className="group relative">
-                            <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                            <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 font-lato">
                                 {post.title}
                             </h3>
-                            <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.description}</p>
+                            <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600 font-rale">{post.description}</p>
                         </div>
                         </article>
                     ))}
@@ -258,7 +258,7 @@ const CtaSection = () => {
                 <div className="mx-auto max-w-2xl lg:max-w-4xl">
                     <figure className="mt-10">
                     <blockquote className="text-center text-xl/8 font-semibold text-gray-900 sm:text-2xl/9">
-                        <p>
+                        <p className='font-monts'>
                             “Something big is coming.”
                         </p>
                     </blockquote>
@@ -275,7 +275,7 @@ const CtaSection = () => {
                           </Fab>
                         </Box>
                         <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                          <div className="font-semibold text-gray-900">Stay tuned or connect with me on</div>
+                          <div className="font-semibold text-gray-900 font-lato">Stay tuned or connect with me on</div>
                         </div>
                     </figcaption>
                     </figure>
@@ -311,12 +311,12 @@ const FooterSection = () => {
                   className="h-20 w-auto"
               />
             </div>
-            <h2 className="text-4xl font-semibold tracking-tight text-white">Subscribe to our newsletter</h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <h2 className="text-4xl font-semibold tracking-tight text-white font-monts">Subscribe to our newsletter</h2>
+            <p className="mt-4 text-lg text-gray-300 font-lato">
               Built with heart. Made to help you thrive.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
-              <label htmlFor="email-address" className="sr-only">
+              <label htmlFor="email-address" className="sr-only font-lato">
                 Email address
               </label>
               <input
@@ -328,12 +328,12 @@ const FooterSection = () => {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 font-lato"
               />
               <button
                 type="submit"
                 onClick={handleSubscribe}
-                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 font-rale"
               >
                 Subscribe
               </button>
@@ -341,15 +341,20 @@ const FooterSection = () => {
             {msg && <p className="mt-2 text-sm text-gray-300">{msg}</p>}
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-            <div className="flex flex-col items-start">
-              <dt className="mt-4 text-base font-semibold text-white"><a href="/">Home</a></dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+            <div className="flex flex-col items-start font-rale">
+              <dd className="mt-4 text-base text-gray-400 hover:text-white">
+                <a href="/">Home</a>
+              </dd>
+              <dd className="mt-2 text-base/7 text-gray-400 hover:text-white">
+                <a href="/projects">Projects</a>
+              </dd>
+              <dd className="mt-2 text-base/7 text-gray-400 hover:text-white">
                 <a href="/">About Us</a>
               </dd>
             </div>
             <div className="flex flex-col items-start">
-              <dt className="mt-4 text-base font-semibold text-white">© 2025 Thrivvr. All rights reserved.</dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dt className="mt-4 text-base font-semibold text-white font-monts">© 2025 Thrivvr. All rights reserved.</dt>
+              <dd className="mt-2 text-base/7 text-gray-400 font-lato">
                 <p className="mt-1"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
               </dd>
             </div>
