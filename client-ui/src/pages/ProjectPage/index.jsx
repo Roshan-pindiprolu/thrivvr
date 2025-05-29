@@ -10,15 +10,15 @@ const callouts = [
     },
     {
       name: 'E-Commerce',
-      description: 'Storybooks and other books',
-      imageSrc: '/BookPic.png',
+      description: 'Written in India',
+      imageSrc: '/WN.png',
       imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
       href: '#',
     },
     {
       name: 'Budget',
-      description: 'Budget Planner',
-      imageSrc: '/BudgetPlanning.avif',
+      description: 'Spendthing',
+      imageSrc: '/Spendthing.png',
       imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
       href: '#',
     },
@@ -78,21 +78,23 @@ const ProjectPage = () => {
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
               {callouts.map((callout) => (
                 <div key={callout.name} className="group relative">
+                  <div className="relative group rounded-lg overflow-hidden">
                     <img
-                        alt={callout.imageAlt}
-                        src={callout.imageSrc}
-                        className="w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square"
+                      alt={callout.imageAlt}
+                      src={callout.imageSrc}
+                      className="w-full max-h-48 rounded-lg bg-white object-cover group-hover:opacity-75 transition duration-300"
                     />
-                     <span className="mt-6 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset font-lato">
-                        {callout.name}
-                    </span>
-                  <h3 className="mt-3  text-base font-semibold text-gray-900 font-rale">
+                    <div className="absolute inset-0 flex items-center justify-center bg-slate-800 bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300">
+                      <span className="text-white text-lg font-semibold font-mono">Coming Soon...</span>
+                    </div>
+                  </div>
+                  <h3 className="mt-7  text-xl font-semibold text-gray-900 font-rale">
                     <a href={callout.href}>
                       <span className="absolute inset-0" />
                       {callout.description}
                     </a>
                   </h3>
-                  <p className="text-base font-semibold text-gray-900"></p>
+                  <p className="text-sm font-normal text-gray-900">{callout.imageAlt}</p>
                 </div>
               ))}
             </div>
