@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const navRoutes = require('./routes/nav');
 const metaRoutes = require('./routes/meta')
 const newsletterRoutes = require('./routes/newsletter');
+const contactRoutes = require('./routes/contact');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/nav', navRoutes);
 app.use('/api/meta', metaRoutes)
 app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/contact', contactRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI)

@@ -57,7 +57,7 @@ const Navigation = () => {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-slate-200 hover:text-white">
+            <a href="/contact" className="text-sm/6 font-semibold text-slate-200 hover:text-white">
               Contact Us <span aria-hidden="true">&rarr;</span>
             </a>
           </div>

@@ -52,6 +52,9 @@ const FooterSection = () => {
               <dd className="mt-2 text-base/7 text-gray-400 hover:text-white">
                 <a href="/">About Us</a>
               </dd>
+              <dd className="mt-2 text-base/7 text-gray-400 hover:text-white">
+                <a href="/contact">Contact Us</a>
+              </dd>
             </div>
             <div className="flex flex-col items-start">
               <dt className="mt-4 text-base font-semibold text-white font-monts">© 2025 Thrivvr. All rights reserved.</dt>
