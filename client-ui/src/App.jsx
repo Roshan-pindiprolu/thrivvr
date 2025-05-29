@@ -1,12 +1,12 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/LayoutComp';
+// import Layout from './components/LayoutComp';
 import AboutMePage from './pages/AboutMePage';
 import ContactUsPage from './pages/ContactUsPage';
 import HomePage from './pages/HomePage';
-import Login from './pages/Login';
+// import Login from './pages/Login';
 import ProjectPage from './pages/ProjectPage';
-import Signup from './pages/Signup';
+// import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -16,11 +16,11 @@ function App() {
         <Route path="/projects" element={<ProjectPage />} />
         <Route path="/about" element={<AboutMePage />} />
         <Route path="/contact" element={<ContactUsPage />} />
-        <Route element={<Layout />}>
+        {/* <Route element={<Layout />}>
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-        </Route>
+        </Route> */}
       </Routes>
     </Router>
   );
