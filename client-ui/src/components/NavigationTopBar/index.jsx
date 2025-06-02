@@ -21,7 +21,7 @@ const NavigationTopBar = () => {
     useEffect(() => {
         const fetchNav = async () => {
         try {
-            const res = await axios.get('http://localhost:1000/api/nav');
+            const res = await axios.get('https://thrivvr.onrender.com/api/nav');
             setNavigation(res.data);
         } catch (err) {
             console.error("❌ Navigation fetch error", err);

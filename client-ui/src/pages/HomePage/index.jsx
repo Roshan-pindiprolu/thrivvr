@@ -291,7 +291,7 @@ const FooterSection = () => {
 
   const handleSubscribe = async () => {
     try {
-      const res = await axios.post('http://localhost:1000/api/newsletter', { email });
+      const res = await axios.post('https://thrivvr.onrender.com/api/newsletter', { email });
       setMsg(res.data.message);
       setEmail('');
     } catch (err) {
@@ -371,7 +371,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchPost = async () => {
         try {
-            const res = await axios.get('http://localhost:1000/api/meta/posts');
+            const res = await axios.get('https://thrivvr.onrender.com/api/meta/posts');
             console.log(res);
             setPosts(res.data);
         } catch (err) {
